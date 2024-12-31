@@ -4,21 +4,11 @@ nums := parse_ints(in)
 left := [0 as i64; 1000]
 right := [0 as i64; 1000]
 
-// TODO: Zeroing out of arrays above doesn't work properly
-let i i64 = 0 as i64
-while i < len(left):
-  left[i] = 0
-  right[i] = 0
-  i = i + 1
-
-i = 0
+let i i64 = 0
 while i < len(nums):
-  // TODO: these expressions aren't parsing properly
-  // when put together
-  i_mod_2 := i % 2
-  if i_mod_2 == 0:
+  if i % 2 == 0:
     left[i / 2] = nums[i]
-  if i_mod_2 == 1:
+  if i % 2 == 1:
     // TODO: these expressions aren't parsing properly
     // when put together
     idx := i - 1
