@@ -9,11 +9,7 @@ while i < len(nums):
   if i % 2 == 0:
     left[i / 2] = nums[i]
   if i % 2 == 1:
-    // TODO: these expressions aren't parsing properly
-    // when put together
-    idx := i - 1
-    idx = idx / 2
-    right[idx] = nums[i]
+    right[(i - 1) / 2] = nums[i]
   i = i + 1
 
 sort_ints(left[0:1000])
