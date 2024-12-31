@@ -1,0 +1,43 @@
+in := read_input("../input/real/day1_1.txt")
+nums := parse_ints(in)
+
+left := [0 as i64; 1000]
+right := [0 as i64; 1000]
+
+// TODO: Zeroing out of arrays above doesn't work properly
+let i i64 = 0 as i64
+while i < len(left):
+  left[i] = 0
+  right[i] = 0
+  i = i + 1
+
+i = 0
+while i < len(nums):
+  // TODO: these expressions aren't parsing properly
+  // when put together
+  i_mod_2 := i % 2
+  if i_mod_2 == 0:
+    left[i / 2] = nums[i]
+  if i_mod_2 == 1:
+    // TODO: these expressions aren't parsing properly
+    // when put together
+    idx := i - 1
+    idx = idx / 2
+    right[idx] = nums[i]
+  i = i + 1
+
+sort_ints(left[0:1000])
+sort_ints(right[0:1000])
+
+let sum i64 = 0
+i = 0
+while i < 1000:
+  lc := left[i]
+  rc := right[i]
+  if lc > rc:
+    // TODO: Can't currently add i64 and &i64
+    sum = sum + lc - rc
+  if rc > lc:
+    sum = sum + rc - lc
+  i = i + 1
+print_i64(sum)
