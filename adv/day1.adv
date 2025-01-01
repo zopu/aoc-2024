@@ -18,12 +18,9 @@ sort_ints(right[0:1000])
 let sum i64 = 0
 i = 0
 while i < 1000:
-  lc := left[i]
-  rc := right[i]
-  if lc > rc:
-    // TODO: Can't currently add i64 and &i64
-    sum = sum + lc - rc
-  if rc > lc:
-    sum = sum + rc - lc
+  if left[i] > right[i]:
+    sum = sum + left[i] - right[i]
+  if right[i] > left[i]:
+    sum = sum + right[i] - left[i]
   i = i + 1
 print_i64(sum)
