@@ -24,3 +24,17 @@ while i < 1000:
     sum = sum + right[i] - left[i]
   i = i + 1
 print_i64(sum)
+
+i = 0
+sum = 0
+while i < 1000:
+  let j i64 = 0
+  let count i64 = 0
+  while j < 1000:
+    if left[i] == right[j]:
+      count = count + 1
+    j = j + 1
+  tmp := left[i] * count
+  sum = sum + tmp
+  i = i + 1
+print_i64(sum)
