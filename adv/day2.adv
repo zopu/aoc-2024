@@ -1,0 +1,50 @@
+fn print_nums(nums [i64]):
+  let i i64 = 0
+  while i < len(nums):
+    print_i64(nums[i])
+    i = i + 1
+  print_char(10)
+
+// Returns index of first problem or -1
+fn find_problem(report [i64]) i64:
+  let result i64 = -1
+  if report[1] == report[0]:
+    return 1
+  if report[1] > report[0]:
+    // Ascending
+    let i i64 = 0
+    while i < len(report) - 1:
+      if report[i] >= report[i + 1]:
+        return i + 1
+      if report[i] + 3 < report[i + 1]:
+        return i + 1
+      i = i + 1
+    return -1
+  if report[1] <= report[0]:
+    // Descending
+    let i i64 = 0
+    while i < len(report) - 1:
+      if report[i] <= report[i + 1]:
+        return i + 1
+      if report[i] > report[i + 1] + 3:
+        return i + 1
+      i = i + 1
+    return -1
+  return -1
+  
+in := read_input("../input/real/day2_1.txt")
+let input_pos i64 = 0
+let line_start i64 = 0
+let sum i64 = 0
+while input_pos < len(in):
+  if in[input_pos] == 10:
+    line := in[line_start:input_pos]
+    line_start = input_pos + 1
+    report := parse_ints(line)
+    maybe_problem := find_problem(report)
+    if maybe_problem == -1:
+      sum = sum + 1
+    print_char(46)
+  input_pos = input_pos + 1
+print_i64(sum)
+
