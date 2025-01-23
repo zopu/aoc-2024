@@ -1,0 +1,60 @@
+in := read_input("../input/real/day3_1.txt")
+
+// Returns index of first match or -1
+fn find(s [u8], substr [u8]) i64:
+  if len(s) < len(substr) { return -1 }
+  let i i64 = 0
+  while i < len(s) - len(substr) - 1:
+    let j i64 = 0
+    match := true
+    while j < len(substr):
+      if s[i + j] != substr[j]:
+        // TODO: break statement
+        match = false
+      j = j + 1
+    if match == true { return i }
+    i = i + 1
+  return -1
+
+fn is_all_ascii_digits(s [u8]) bool:
+  let i i64 = 0
+  while i < len(s):
+    if s[i] < 48 { return false }
+    if s[i] > 57 { return false }
+    i = i + 1
+  return true
+
+fn mul_result(s[u8]) i64:
+  if find(s, "mul(") != 0 { return -1 }
+
+  comma_idx := find(s, ",")
+  if comma_idx == -1 { return -1 }
+  // TODO: Not operator
+  if is_all_ascii_digits(s[4:comma_idx]) != true { return -1 }
+
+  ints_first := parse_ints(s[0:comma_idx])
+  if len(ints_first) != 1 { return -1 }
+
+  close_idx := find(s[0:len(s)], ")")
+  if close_idx == -1 { return -1 }
+  if close_idx <= comma_idx { return -1 }
+  if is_all_ascii_digits(s[comma_idx + 1:close_idx]) != true { return -1 }
+
+  ints_second := parse_ints(s[comma_idx:close_idx])
+  if len(ints_second) != 1 { return -1 }
+
+  return ints_first[0] * ints_second[0]
+
+let i i64 = 0
+let sum i64 = 0
+while i < len(in):
+  next_mul := find(in[i:len(in)], "mul(")
+  if next_mul == -1:
+    i = 1000000  // TODO: break!
+  if next_mul >= 0:
+    result := mul_result(in[i + next_mul:len(in)])
+    if result != -1:
+      sum = sum + result
+    i = i + next_mul + 1 
+
+print("Part 1: {sum}\n")
