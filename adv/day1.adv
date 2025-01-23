@@ -23,7 +23,7 @@ while i < 1000:
   if right[i] > left[i]:
     sum = sum + right[i] - left[i]
   i = i + 1
-print_i64(sum)
+print("Part 1: {sum}\n")
 
 i = 0
 sum = 0
@@ -37,4 +37,4 @@ while i < 1000:
   tmp := left[i] * count
   sum = sum + tmp
   i = i + 1
-print_i64(sum)
+print("Part 2: {sum}\n")

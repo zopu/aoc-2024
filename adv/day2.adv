@@ -57,6 +57,7 @@ while input_pos < len(in):
     if has_safe_removal(report, report_tmp):
       p2_sum = p2_sum + 1
   input_pos = input_pos + 1
-print_i64(p1_sum)
-print_i64(p2_sum)
+
+print("Part 1: {p1_sum}\n")
+print("Part 2: {p2_sum}\n")
 
