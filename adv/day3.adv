@@ -58,3 +58,28 @@ while i < len(in):
     i = i + next_mul + 1 
 
 print("Part 1: {sum}\n")
+
+i = 0
+sum = 0
+doing := true
+while i < len(in):
+  if doing:
+    next_mul := find(in[i:len(in)], "mul(")
+    next_dont := find(in[i:len(in)], "don't()")
+    if next_mul == -1 { break }
+    // TODO: AND operator
+    if next_dont < next_mul:
+      if next_dont != -1:
+        i = i + next_dont
+        doing = false
+        continue
+    result := mul_result(in[i + next_mul:len(in)])
+    if result != -1:
+      sum = sum + result
+    i = i + next_mul + 1
+  if doing == false:
+    next_do := find(in[i:len(in)], "do()")
+    if next_do == -1 { break }
+    doing = true
+    i = i + next_do
+print("Part 2: {sum}\n")
