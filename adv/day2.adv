@@ -1,5 +1,5 @@
 fn fill_from_with_skip(from [i64], to [i64], skip_idx i64):
-  let i i64 = 0
+  i: i64 = 0
   while i < len(from):
     from_idx := i
     if i >= skip_idx { from_idx = i + 1 }
@@ -12,14 +12,14 @@ fn find_problem(report [i64]) i64:
   if report[1] == report[0] { return 1 }
   if report[1] > report[0]:
     // Ascending
-    let i i64 = 0
+    i: i64 = 0
     while i < len(report) - 1:
       if report[i] >= report[i + 1] { return i + 1 }
       if report[i] + 3 < report[i + 1] { return i + 1 }
       i = i + 1
   if report[1] <= report[0]:
     // Descending
-    let i i64 = 0
+    i: i64 = 0
     while i < len(report) - 1:
       if report[i] <= report[i + 1] { return i + 1 }
       if report[i] > report[i + 1] + 3 { return i + 1 }
@@ -27,7 +27,7 @@ fn find_problem(report [i64]) i64:
   return -1
 
 fn has_safe_removal(report [i64], tmp [i64]) bool:
-  let i i64 = 0
+  i: i64 = 0
   while i < len(report):
     fill_from_with_skip(report, tmp, i)
     if find_problem(tmp[0:len(tmp) - 1]) == -1:
@@ -36,10 +36,10 @@ fn has_safe_removal(report [i64], tmp [i64]) bool:
   return false
 
 in := read_input("../input/real/day2_1.txt")
-let input_pos i64 = 0
-let line_start i64 = 0
-let p1_sum i64 = 0
-let p2_sum i64 = 0
+input_pos: i64 = 0
+line_start: i64 = 0
+p1_sum: i64 = 0
+p2_sum: i64 = 0
 while input_pos < len(in):
   if in[input_pos] == 10:
     line := in[line_start:input_pos]

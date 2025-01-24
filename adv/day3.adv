@@ -3,21 +3,21 @@ in := read_input("../input/real/day3_1.txt")
 // Returns index of first match or -1
 fn find(s [u8], substr [u8]) i64:
   if len(s) < len(substr) { return -1 }
-  let i i64 = 0
+  i: i64 = 0
   while i < len(s) - len(substr) - 1:
-    let j i64 = 0
+    j: i64 = 0
     match := true
     while j < len(substr):
       if s[i + j] != substr[j]:
-        // TODO: break statement
         match = false
+        break
       j = j + 1
     if match == true { return i }
     i = i + 1
   return -1
 
 fn is_all_ascii_digits(s [u8]) bool:
-  let i i64 = 0
+  i: i64 = 0
   while i < len(s):
     if s[i] < 48 { return false }
     if s[i] > 57 { return false }
@@ -45,12 +45,12 @@ fn mul_result(s[u8]) i64:
 
   return ints_first[0] * ints_second[0]
 
-let i i64 = 0
-let sum i64 = 0
+i: i64 = 0
+sum: i64 = 0
 while i < len(in):
   next_mul := find(in[i:len(in)], "mul(")
   if next_mul == -1:
-    i = 1000000  // TODO: break!
+    break
   if next_mul >= 0:
     result := mul_result(in[i + next_mul:len(in)])
     if result != -1:

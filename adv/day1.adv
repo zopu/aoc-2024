@@ -4,7 +4,7 @@ nums := parse_ints(in)
 left := [0 as i64; 1000]
 right := [0 as i64; 1000]
 
-let i i64 = 0
+i: i64 = 0
 while i < len(nums):
   if i % 2 == 0:
     left[i / 2] = nums[i]
@@ -15,7 +15,7 @@ while i < len(nums):
 sort_ints(left[0:1000])
 sort_ints(right[0:1000])
 
-let sum i64 = 0
+sum: i64 = 0
 i = 0
 while i < 1000:
   if left[i] > right[i]:
