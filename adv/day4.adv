@@ -1,0 +1,67 @@
+grid := read_input("../input/real/day4_1.txt")
+
+// Returns index of first match or -1
+fn find(s [u8], substr [u8]) i64:
+  if len(s) < len(substr) { return -1 }
+  i := 0
+  while i < len(s) - len(substr) - 1:
+    j := 0
+    match := true
+    while j < len(substr):
+      if s[i + j] != substr[j]:
+        match = false
+        break
+      j = j + 1
+    if match == true { return i }
+    i = i + 1
+  return -1
+
+fn count(s [u8], char u8) i64:
+  i := 0
+  sum := 0
+  while i < len(s):
+    if s[i] == char { sum = sum + 1 }
+    i = i + 1
+  return sum
+
+
+fn get(grid [u8], X i64, Y i64, x i64, y i64) u8:
+  return grid[x + (X + 1) * y]
+
+fn in_bounds(X i64, Y i64, x i64, y i64) bool:
+  if x < 0 or x >= X or y < 0 or y >= Y { return false }
+  return true
+
+fn check(grid [u8], X i64, Y i64, x i64, y i64, char u8) bool:
+  if x < 0 or x >= X or y < 0 or y >= Y { return false }
+  return grid[x + (X + 1) * y] == char
+
+dirs := [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]
+
+X := find(grid, "\n")
+// TODO: Char literal (10 is \n)
+// or maybe allow coercion of a one-char string literal to a u8?
+Y := count(grid, 10)
+print("X: {X}. Y: {Y}\n")
+
+sum := 0
+xmas := "XMAS"
+i := 0
+while i < Y:
+  j := 0
+  while j < X:
+    d := 0
+    while d < len(dirs):
+      ch := 0
+      match := true
+      while ch < len(xmas):
+        if check(grid, X, Y, j + dirs[d][0] * ch, i + dirs[d][1] * ch, xmas[ch]) == false:
+          match = false
+        ch = ch + 1
+      if match:
+        sum = sum + 1
+      d = d + 1
+    j = j + 1
+  i = i + 1
+
+print("Sum: {sum}\n")
