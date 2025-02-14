@@ -3,25 +3,19 @@ grid := read_input("../input/real/day4_1.txt")
 // Returns index of first match or -1
 fn find(s [u8], substr [u8]) i64:
   if len(s) < len(substr) { return -1 }
-  i := 0
-  while i < len(s) - len(substr) - 1:
-    j := 0
+  for i in 0..len(s) - len(substr) - 1:
     match := true
-    while j < len(substr):
+    for j in 0..len(substr):
       if s[i + j] != substr[j]:
         match = false
         break
-      j = j + 1
     if match == true { return i }
-    i = i + 1
   return -1
 
 fn count(s [u8], char u8) i64:
-  i := 0
   sum := 0
-  while i < len(s):
+  for i in 0..len(s):
     if s[i] == char { sum = sum + 1 }
-    i = i + 1
   return sum
 
 
@@ -46,22 +40,14 @@ print("X: {X}. Y: {Y}\n")
 
 sum := 0
 xmas := "XMAS"
-i := 0
-while i < Y:
-  j := 0
-  while j < X:
-    d := 0
-    while d < len(dirs):
-      ch := 0
+for i in 0..Y:
+  for j in 0..X:
+    for d in 0..len(dirs):
       match := true
-      while ch < len(xmas):
+      for ch in 0..len(xmas):
         if check(grid, X, Y, j + dirs[d][0] * ch, i + dirs[d][1] * ch, xmas[ch]) == false:
           match = false
-        ch = ch + 1
       if match:
         sum = sum + 1
-      d = d + 1
-    j = j + 1
-  i = i + 1
 
 print("Sum: {sum}\n")

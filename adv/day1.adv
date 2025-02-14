@@ -1,40 +1,32 @@
-in := read_input("../input/real/day1_1.txt")
-nums := parse_ints(in)
+input := read_input("../input/real/day1_1.txt")
+nums := parse_ints(input)
 
 left := [0 as i64; 1000]
 right := [0 as i64; 1000]
 
-i: i64 = 0
-while i < len(nums):
+for i in 0..len(nums):
   if i % 2 == 0:
     left[i / 2] = nums[i]
   if i % 2 == 1:
     right[(i - 1) / 2] = nums[i]
-  i = i + 1
 
 sort_ints(left[0:1000])
 sort_ints(right[0:1000])
 
 sum: i64 = 0
-i = 0
-while i < 1000:
+for i in 0..1000:
   if left[i] > right[i]:
     sum = sum + left[i] - right[i]
   if right[i] > left[i]:
     sum = sum + right[i] - left[i]
-  i = i + 1
 print("Part 1: {sum}\n")
 
-i = 0
 sum = 0
-while i < 1000:
-  let j i64 = 0
+for i in 0..1000:
   let count i64 = 0
-  while j < 1000:
+  for j in 0..1000:
     if left[i] == right[j]:
       count = count + 1
-    j = j + 1
   tmp := left[i] * count
   sum = sum + tmp
-  i = i + 1
 print("Part 2: {sum}\n")
