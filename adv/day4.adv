@@ -35,8 +35,7 @@ dirs := [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]
 X := find(grid, "\n")
 // TODO: Char literal (10 is \n)
 // or maybe allow coercion of a one-char string literal to a u8?
-Y := count(grid, 10)
-print("X: {X}. Y: {Y}\n")
+Y := count(grid, "\n"[0])
 
 sum := 0
 xmas := "XMAS"
@@ -50,4 +49,20 @@ for i in 0..Y:
       if match:
         sum = sum + 1
 
-print("Sum: {sum}\n")
+print("Part 1: {sum}\n")
+
+dirs_x := [[1, 1], [-1, -1], [1, 1], [-1, -1]]
+inverses := [[1, -1], [1, -1], [-1, 1], [-1, 1]]
+
+sum = 0
+for i in 1..(Y - 1):
+  for j in 1..(X - 1):
+    if get(grid, X, Y, j, i) == xmas[2]:
+      for d in 0..len(dirs_x):
+        if check(grid, X, Y, j + dirs_x[d][0], i + dirs_x[d][1], xmas[1]) == false { continue }
+        if check(grid, X, Y, j - dirs_x[d][0], i - dirs_x[d][1], xmas[3]) == false { continue }
+        if check(grid, X, Y, j + inverses[d][0], i + inverses[d][1], xmas[1]) == false { continue }
+        if check(grid, X, Y, j - inverses[d][0], i - inverses[d][1], xmas[3]) == false { continue }
+        sum = sum + 1
+
+print("Part 2: {sum}\n")
