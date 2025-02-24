@@ -19,7 +19,7 @@ for i in 0..1000:
     sum = sum + left[i] - right[i]
   if right[i] > left[i]:
     sum = sum + right[i] - left[i]
-print("Part 1: {sum}\n")
+println("Part 1: {sum}")
 
 sum = 0
 for i in 0..1000:
@@ -29,4 +29,4 @@ for i in 0..1000:
       count = count + 1
   tmp := left[i] * count
   sum = sum + tmp
-print("Part 2: {sum}\n")
+println("Part 2: {sum}")

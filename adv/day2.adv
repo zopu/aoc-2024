@@ -47,6 +47,6 @@ for input_pos in 0..len(input):
     if has_safe_removal(report, report_tmp):
       p2_sum = p2_sum + 1
 
-print("Part 1: {p1_sum}\n")
-print("Part 2: {p2_sum}\n")
+println("Part 1: {p1_sum}")
+println("Part 2: {p2_sum}")
 

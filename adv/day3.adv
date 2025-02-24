@@ -48,7 +48,7 @@ for i in 0..len(input):
       sum = sum + result
     i = i + next_mul
 
-print("Part 1: {sum}\n")
+println("Part 1: {sum}")
 
 i := 0
 sum = 0
@@ -73,4 +73,4 @@ while i < len(input):
     if next_do == -1 { break }
     doing = true
     i = i + next_do
-print("Part 2: {sum}\n")
+println("Part 2: {sum}")

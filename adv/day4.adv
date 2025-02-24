@@ -49,7 +49,7 @@ for i in 0..Y:
       if match:
         sum = sum + 1
 
-print("Part 1: {sum}\n")
+println("Part 1: {sum}")
 
 dirs_x := [[1, 1], [-1, -1], [1, 1], [-1, -1]]
 inverses := [[1, -1], [1, -1], [-1, 1], [-1, 1]]
@@ -65,4 +65,4 @@ for i in 1..(Y - 1):
         if check(grid, X, Y, j - inverses[d][0], i - inverses[d][1], xmas[3]) == false { continue }
         sum = sum + 1
 
-print("Part 2: {sum}\n")
+println("Part 2: {sum}")
