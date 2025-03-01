@@ -28,11 +28,10 @@ fn has_safe_removal(report [i64], tmp [i64]) bool:
   return false
 
 input := read_input("../input/real/day2_1.txt")
-ls := lines(input)
 p1_sum := 0
 p2_sum := 0
-for line_i in 0..len(ls):
-  report := parse_ints(ls[line_i])
+for line in lines(input):
+  report := parse_ints(line)
   report_tmp := zeros(type i64, len(report)) as [i64]
   problem_idx := find_problem(report)
   if problem_idx == -1:
